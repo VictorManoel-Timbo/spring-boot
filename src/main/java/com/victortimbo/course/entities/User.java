@@ -1,8 +1,11 @@
 package com.victortimbo.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
@@ -17,6 +20,10 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String phone;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<Order>();
 
     public User() {}
     public User(Long id, String name, String email, String password, String phone) {
@@ -56,6 +63,9 @@ public class User implements Serializable {
     }
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
