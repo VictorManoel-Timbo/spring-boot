@@ -1,8 +1,10 @@
 package com.victortimbo.course.config;
 
+import com.victortimbo.course.entities.Category;
 import com.victortimbo.course.entities.Order;
 import com.victortimbo.course.entities.User;
 import com.victortimbo.course.entities.enums.OrderStatus;
+import com.victortimbo.course.repositories.CategoryRepository;
 import com.victortimbo.course.repositories.OrderRepository;
 import com.victortimbo.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepositoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepositoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User user1 = new User(null, "Maria Brown", "maria@gmail.com", "9888", "123456");
         User user2 = new User(null, "Alex Green", "alex@gmail.com", "9777", "123456");
 
