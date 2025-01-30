@@ -1,4 +1,4 @@
-package com.victortimbo.course.services.exceptions;
+package com.victortimbo.course.resources.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

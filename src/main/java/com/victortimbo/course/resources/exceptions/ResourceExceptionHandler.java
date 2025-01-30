@@ -1,5 +1,7 @@
-package com.victortimbo.course.services.exceptions;
+package com.victortimbo.course.resources.exceptions;
 
+import com.victortimbo.course.services.exceptions.DatabaseException;
+import com.victortimbo.course.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

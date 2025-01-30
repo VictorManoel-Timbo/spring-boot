@@ -32,6 +32,16 @@ public class UserService {
         return repository.save(user);
     }
 
+    public void delete(Long id) {
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
+
     public User update(Long id ,User user) {
         try {
             User entity = repository.getReferenceById(id);
@@ -46,15 +56,5 @@ public class UserService {
         entity.setName(user.getName());
         entity.setEmail(user.getEmail());
         entity.setPhone(user.getPhone());
-    }
-
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
     }
 }
